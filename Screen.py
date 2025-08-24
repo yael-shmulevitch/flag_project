@@ -1,5 +1,4 @@
 import random
-
 import pygame
 import consts
 
@@ -59,3 +58,4 @@ def draw_mine(mine_places):
     img = pygame.image.load(consts.MINE)
     for i in range (len(mine_places)):
         screen.blit(img, mine_places[i][0],mine_places[i][1])
+
