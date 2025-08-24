@@ -1,4 +1,4 @@
-
+MINE="mine.png"
 FLAG="flag.png"
 GRASS="grass.png"
 EXPLOTION= "explotion.png"
