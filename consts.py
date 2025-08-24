@@ -1,0 +1,14 @@
+
+FLAG="flag.png"
+GRASS="grass.png"
+EXPLOTION= "explotion.png"
+SOLDIER= "slodier.png"
+
+WINDOW_WIDTH=500
+WINDOW_HEIGHT=250
+
+STARTING_POINT_SOLDIER=(0,0)
+FLAG_PLACE=(230,500)
+
+BG_COLOR=(151,176,103)
+
