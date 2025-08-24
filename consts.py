@@ -2,7 +2,7 @@ MINE="mine.png"
 FLAG="flag.png"
 GRASS="grass.png"
 EXPLOTION= "explotion.png"
-SOLDIER= "slodier.png"
+SOLDIER= "soldier.png"
 
 WINDOW_WIDTH=1000
 WINDOW_HEIGHT=500
