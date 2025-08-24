@@ -31,9 +31,6 @@ def create ():
         else:
             continue
 
-    for i in range (len(board_matrix)):
-        print (board_matrix[i])
-
     return mine_palces
 
 

@@ -7,8 +7,8 @@ state={"window_open":True,"is_winning":0,"show":False,"move":None,"soldier_place
 def main():
     pygame.init()
 
-    while True:
-        Screen.draw_game()
+    while state["window_open"]:
+        Screen.draw_game(state)
 
 if __name__ == "__main__":
     main()

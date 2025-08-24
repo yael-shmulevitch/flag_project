@@ -1,6 +1,7 @@
 import random
 import pygame
 import consts
+import game_field
 
 
 screen = pygame.display.set_mode(
@@ -31,11 +32,7 @@ def draw_grass():
     for i in range (len(MY_GRASS_PLACE)):
         screen.blit(img,(MY_GRASS_PLACE[i][0]*20,MY_GRASS_PLACE[i][1]*20))
 
-def draw_game():
-    screen.fill(consts.BG_COLOR)
-    draw_flag()
-    draw_grass()
-    pygame.display.flip()
+
 
 def draw_grid():
     screen.fill(consts.BG_MATRIX)
@@ -47,15 +44,46 @@ def draw_grid():
     while 1:
         pass
 
-draw_grid()
 
 def draw_soldier(soldier_place):
     img = pygame.image.load(consts.SOLDIER)
     screen.blit(img,(soldier_place[0],soldier_place[1]))
 
 
+
 def draw_mine(mine_places):
     img = pygame.image.load(consts.MINE)
-    for i in range (len(mine_places)):
-        screen.blit(img, mine_places[i][0],mine_places[i][1])
+    for i in range(len(mine_places)):
+        if i%3==0:
+            screen.blit(img, (mine_places[i][0]*20,mine_places[i][1]*20))
 
+
+mine_places=game_field.create()
+# print(mine_places)
+# for i in range(len(mine_places)):
+#     if i % 3 == 0:
+#         print(mine_places[i][0]*20,mine_places[i][1]*20)
+
+def draw_game(state):
+    screen.fill(consts.BG_COLOR)
+    draw_flag()
+    draw_grass()
+    draw_soldier(state["soldier_place"])
+    draw_mine(mine_places)
+    pygame.display.flip()
+
+def draw_message(message, font_size, color, bg, location):
+    font = pygame.font.SysFont(consts.FONT_NAME, font_size)
+    text_img = font.render(message, True, color,bg)
+    screen.blit(text_img, location)
+
+def draw_win_message():
+    draw_message(consts.WIN_MESSAGE, consts.FONT_SIZE,
+                 consts.MESSAGE_COLOR, consts.MESSAGE_BG_WIN, consts.LOCATION)
+
+def draw_lose_message():
+    draw_message(consts.LOSE_MESSAGE, consts.FONT_SIZE,
+                 consts.MESSAGE_COLOR,consts.MESSAGE_BG_LOSE, consts.LOCATION)
+
+while True:
+    draw_lose_message()
