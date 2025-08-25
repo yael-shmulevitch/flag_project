@@ -56,10 +56,10 @@ def check(soldier_place, mine_places):
     body, legs = soldier_parts(soldier_place)
     for i in body:
         if i in FLAG_PLACES:
-             return 1
+             return consts.WIN_STATE
     for j in legs:
         if j in mine_places:
-            return 2
+            return consts.LOSE_STATE
 
 
 

@@ -15,12 +15,12 @@ def draw_flag():
 
 def grass():
     possible_place=[]
-    for i in range(25):
-        for j in range (50):
+    for i in range(consts.BOARD_LENGHT):
+        for j in range (consts.BOARD_WIDTH):
             my_tuple=(j+1,i+1)
             possible_place.append(my_tuple)
     grass_place=[]
-    for i in range(20):
+    for i in range(consts.GRASS_NUM):
         x=random.choice(possible_place)
         grass_place.append(x)
         possible_place.remove(x)
@@ -31,7 +31,7 @@ MY_GRASS_PLACE=grass()
 def draw_grass():
     img = pygame.image.load(consts.GRASS)
     for i in range (len(MY_GRASS_PLACE)):
-        screen.blit(img,(MY_GRASS_PLACE[i][0]*20,MY_GRASS_PLACE[i][1]*20))
+        screen.blit(img,(MY_GRASS_PLACE[i][0]*consts.BLOCK_SIDE,MY_GRASS_PLACE[i][1]*consts.BLOCK_SIDE))
 
 
 
@@ -83,10 +83,10 @@ def draw_game(state,mine_places):
         draw_flag()
         draw_soldier(state["soldier_place"])
 
-        if state["is_winning"]==0:
+        if state["is_winning"]==consts.CONTINUE_STATE:
             pass
-        elif state["is_winning"]==1:
+        elif state["is_winning"]==consts.WIN_STATE:
             draw_win_message()
-        elif state["is_winning"] == 2:
+        elif state["is_winning"] == consts.LOSE_STATE:
             draw_lose_message()
         pygame.display.flip()
