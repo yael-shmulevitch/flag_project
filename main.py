@@ -12,13 +12,16 @@ state={"window_open":True,"is_winning":0,"show":False,"move":None,"soldier_place
 def main():
     pygame.init()
     mine_places = create()
-    print(mine_places)
-    my_grass= Screen.grass()
     while state["window_open"]:
         Soldier.keyboard(state)
-        state["is_winning"]=Soldier.check(state["soldier_place"],mine_places)
-        Screen.draw_game(state,mine_places)
-
+        if state["show"]==True:
+            ending=time.time()+1
+            while time.time()<ending:
+                Screen.draw_game(state,mine_places)
+            state["show"]=False
+        else:
+            state["is_winning"]=Soldier.check(state["soldier_place"],mine_places)
+            Screen.draw_game(state, mine_places)
 
 
 if __name__ == "__main__":

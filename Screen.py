@@ -80,8 +80,8 @@ def draw_game(state,mine_places):
             pygame.time.delay(1)
     else:
         screen.fill(consts.BG_COLOR)
-        draw_flag()
         draw_grass()
+        draw_flag()
         draw_soldier(state["soldier_place"])
 
         if state["is_winning"]==0:

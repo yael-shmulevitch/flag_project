@@ -54,8 +54,6 @@ def keyboard(state):
 
 def check(soldier_place, mine_places):
     body, legs = soldier_parts(soldier_place)
-    print(body)
-    print(legs)
     for i in body:
         if i in FLAG_PLACES:
              return 1
