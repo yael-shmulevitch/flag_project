@@ -9,18 +9,17 @@ state={"window_open":True,"is_winning":0,"show":False,"move":None,"soldier_place
 def main():
     pygame.init()
     mine_places = create()
-#   flag_places=[]
     my_grass= Screen.grass()
     while state["window_open"]:
-        state["soldier_place"]=Soldier.keybord(state["soldier_place]")
-        Soldier.check(state["soldier_place"],mine_places,flag_places,)
+        state["soldier_place"]=Soldier.keybord(state["soldier_place"])
+        Soldier.check(state["soldier_place"],mine_places)
         if state["is_winning"]==1:
             pass
         elif state["is_winning"]==2:
             pass
         else:
             pass
-        Screen.draw_game(state)
+        Screen.draw_game(state,mine_places)
 
 
 

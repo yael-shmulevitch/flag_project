@@ -33,5 +33,8 @@ def create ():
 
     return mine_palces,board_matrix
 
+print(create()[1])
+
+
 
 
