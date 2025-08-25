@@ -1,20 +1,22 @@
-# import pygame
-# pygame.init()
-# screen = pygame.display.set_mode((100, 100))
-# screen.fill("gold")
-# pygame.display.update()
-# running = True
-# while running:
-#     for event in pygame.event.get():
-#         if event.type == pygame.KEYDOWN:
-#             print("Keydown")
-#             if event.key == pygame.K_SPACE:
-#                 print("Space key")
-#             elif event.key == pygame.K_ESCAPE:
-#                 print("Escape key")
-#                 running = False
+import pygame
+import consts
 import time
+screen = pygame.display.set_mode(
+        (consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
+pygame.init()
 
-t_end = time.time() + 1
-while time.time() < t_end:
-    print("HI")
+
+def draw_message(message, font_size, color, bg, location):
+    font = pygame.font.SysFont(consts.FONT_NAME, font_size)
+    text_img = font.render(message, True, color,bg)
+    screen.blit(text_img, location)
+
+def draw_win_message():
+    draw_message(consts.WIN_MESSAGE, consts.FONT_SIZE,
+                 consts.MESSAGE_COLOR, consts.MESSAGE_BG_WIN, consts.LOCATION)
+
+def draw_lose_message():
+    draw_message(consts.LOSE_MESSAGE, consts.FONT_SIZE,
+                 consts.MESSAGE_COLOR,consts.MESSAGE_BG_LOSE, consts.LOCATION)
+
+

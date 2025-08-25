@@ -40,7 +40,7 @@ def draw_grass():
 
 def draw_soldier(soldier_place):
     img = pygame.image.load(consts.SOLDIER)
-    screen.blit(img,(soldier_place[1]*20,soldier_place[0]*20))
+    screen.blit(img,((soldier_place[1])*20,(soldier_place[0])*20))
 
 
 
@@ -48,7 +48,7 @@ def draw_mine(mine_places):
     img = pygame.image.load(consts.MINE)
     for i in range(len(mine_places)):
         if i%3==0:
-            screen.blit(img, (mine_places[i][0]*20,mine_places[i][1]*20))
+            screen.blit(img, (((mine_places[i][1]-1)*20),(mine_places[i][0]-1)*20))
 
 def draw_grid(state,mine_places):
     screen.fill(consts.BG_MATRIX)
@@ -57,7 +57,7 @@ def draw_grid(state,mine_places):
             rect = pygame.Rect(x, y, consts.BLOCK_SIDE, consts.BLOCK_SIDE)
             pygame.draw.rect(screen, consts.GRID_COLOR, rect, 1)
     draw_soldier(state["soldier_place"])
-    draw_mine(mine_places)
+    draw_mine( mine_places)
     pygame.display.flip()
 
 
@@ -77,10 +77,17 @@ def draw_lose_message():
 def draw_game(state,mine_places):
     if state["show"]==True:
             draw_grid(state,mine_places)
+            pygame.time.delay(1)
     else:
         screen.fill(consts.BG_COLOR)
         draw_flag()
         draw_grass()
         draw_soldier(state["soldier_place"])
-        pygame.display.flip()
 
+        if state["is_winning"]==0:
+            pass
+        elif state["is_winning"]==1:
+            draw_win_message()
+        elif state["is_winning"] == 2:
+            draw_lose_message()
+        pygame.display.flip()
