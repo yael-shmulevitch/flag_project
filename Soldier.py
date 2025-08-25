@@ -11,3 +11,9 @@ def soldier_parts(soldier_place):
 
              ]
     return my_body,my_legs
+
+def check(soldier_place):
+    body,legs= soldier_parts(soldier_place)
+    for i in body:
+        if i in flag_places:
+            state["is_winning"]=1

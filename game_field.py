@@ -31,7 +31,7 @@ def create ():
         else:
             continue
 
-    return mine_palces
+    return mine_palces,board_matrix
 
 
 
