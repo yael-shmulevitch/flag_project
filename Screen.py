@@ -50,14 +50,14 @@ def draw_mine(mine_places):
         if i%3==0:
             screen.blit(img, (mine_places[i][0]*20,mine_places[i][1]*20))
 
-def draw_grid():
+def draw_grid(state,mine_places):
     screen.fill(consts.BG_MATRIX)
     for x in range(0, consts.WINDOW_WIDTH, consts.BLOCK_SIDE):
         for y in range(0, consts.WINDOW_HEIGHT, consts.BLOCK_SIDE):
             rect = pygame.Rect(x, y, consts.BLOCK_SIDE, consts.BLOCK_SIDE)
             pygame.draw.rect(screen, consts.GRID_COLOR, rect, 1)
-    draw_soldier(soldier_place=(0,0))
-    draw_mine([(0,4),(100,200)])
+    draw_soldier(state["soldier_place"])
+    draw_mine(mine_places)
     pygame.display.flip()
 
 
@@ -76,10 +76,8 @@ def draw_lose_message():
 
 def draw_game(state,mine_places):
     if state["show"]==True:
-        print(state)
-        draw_grid()
-        time.sleep(1)
-    if state["show"]==False:
+            draw_grid(state,mine_places)
+    else:
         screen.fill(consts.BG_COLOR)
         draw_flag()
         draw_grass()
