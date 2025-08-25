@@ -7,7 +7,7 @@ import Soldier
 from time import sleep
 import time
 
-state={"window_open":True,"is_winning":0,"show":False,"move":None,"soldier_place":(0,0),
+state={"window_open":True,"is_winning":0,"show":False,"soldier_place":(0,0),
        }
 def main():
     pygame.init()
@@ -22,7 +22,11 @@ def main():
         else:
             state["is_winning"]=Soldier.check(state["soldier_place"],mine_places)
             Screen.draw_game(state, mine_places)
-
+        if state["is_winning"]==1 or state["is_winning"]==2:
+            ending=time.time()+3
+            while time.time()<ending:
+                Screen.draw_game(state,mine_places)
+                state["window_open"]=False
 
 if __name__ == "__main__":
     main()

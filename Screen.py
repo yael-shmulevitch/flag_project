@@ -57,7 +57,7 @@ def draw_grid(state,mine_places):
             rect = pygame.Rect(x, y, consts.BLOCK_SIDE, consts.BLOCK_SIDE)
             pygame.draw.rect(screen, consts.GRID_COLOR, rect, 1)
     draw_soldier(state["soldier_place"])
-    draw_mine( mine_places)
+    draw_mine(mine_places)
     pygame.display.flip()
 
 
@@ -77,7 +77,6 @@ def draw_lose_message():
 def draw_game(state,mine_places):
     if state["show"]==True:
             draw_grid(state,mine_places)
-            pygame.time.delay(1)
     else:
         screen.fill(consts.BG_COLOR)
         draw_grass()
