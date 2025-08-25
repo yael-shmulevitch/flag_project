@@ -1,22 +1,23 @@
-import pygame
-import consts
-import time
-screen = pygame.display.set_mode(
-        (consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
-pygame.init()
+from pynput import keyboard
+
+def on_press(key):
+    if key == keyboard.Key.cmd_l:
+        try:
+            print('- Started recording -'.format(key))
+        except IOError:
+            print ("Error")
+    else:
+        print('incorrect character {0}, press cmd_l'.format(key))
 
 
-def draw_message(message, font_size, color, bg, location):
-    font = pygame.font.SysFont(consts.FONT_NAME, font_size)
-    text_img = font.render(message, True, color,bg)
-    screen.blit(text_img, location)
+def on_release(key):
 
-def draw_win_message():
-    draw_message(consts.WIN_MESSAGE, consts.FONT_SIZE,
-                 consts.MESSAGE_COLOR, consts.MESSAGE_BG_WIN, consts.LOCATION)
-
-def draw_lose_message():
-    draw_message(consts.LOSE_MESSAGE, consts.FONT_SIZE,
-                 consts.MESSAGE_COLOR,consts.MESSAGE_BG_LOSE, consts.LOCATION)
+    print('{0} released'.format(key))
+    if key == keyboard.Key.cmd_l:
+        print('{0} stop'.format(key))
+        keyboard.Listener.stop
+        return False
 
 
+with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()

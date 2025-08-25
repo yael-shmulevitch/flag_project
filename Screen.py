@@ -4,55 +4,58 @@ import consts
 import game_field
 import time
 
-
 screen = pygame.display.set_mode(
         (consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
 
+
 def draw_flag():
     img_flag = pygame.image.load(consts.FLAG)
-    screen.blit(img_flag,(47*20,22*20))
+    screen.blit(img_flag, (47 * 20, 22 * 20))
 
 
 def grass():
-    possible_place=[]
+    possible_place = []
     for i in range(consts.BOARD_LENGHT):
-        for j in range (consts.BOARD_WIDTH):
-            my_tuple=(j+1,i+1)
+        for j in range(consts.BOARD_WIDTH):
+            my_tuple = (j + 1, i + 1)
             possible_place.append(my_tuple)
-    grass_place=[]
+    grass_place = []
     for i in range(consts.GRASS_NUM):
-        x=random.choice(possible_place)
+        x = random.choice(possible_place)
         grass_place.append(x)
         possible_place.remove(x)
     return grass_place
 
-MY_GRASS_PLACE=grass()
+
+MY_GRASS_PLACE = grass()
+
 
 def draw_grass():
     img = pygame.image.load(consts.GRASS)
-    for i in range (len(MY_GRASS_PLACE)):
-        screen.blit(img,(MY_GRASS_PLACE[i][0]*consts.BLOCK_SIDE,MY_GRASS_PLACE[i][1]*consts.BLOCK_SIDE))
-
-
-
-
+    for i in range(len(MY_GRASS_PLACE)):
+        screen.blit(img, (MY_GRASS_PLACE[i][0] * consts.BLOCK_SIDE,
+                          MY_GRASS_PLACE[i][1] * consts.BLOCK_SIDE))
 
 
 def draw_soldier(soldier_place):
     img = pygame.image.load(consts.SOLDIER)
-    screen.blit(img,((soldier_place[1])*20,(soldier_place[0])*20))
+    screen.blit(img, ((soldier_place[1]) * 20, (soldier_place[0]) * 20))
+
 
 def draw_night_soldier(soldier_place):
     img = pygame.image.load(consts.NIGHT_SOLDIER)
-    screen.blit(img,((soldier_place[1])*20,(soldier_place[0])*20))
+    screen.blit(img, ((soldier_place[1]) * 20, (soldier_place[0]) * 20))
+
 
 def draw_mine(mine_places):
     img = pygame.image.load(consts.MINE)
     for i in range(len(mine_places)):
-        if i%3==0:
-            screen.blit(img, (((mine_places[i][1]-1)*20),(mine_places[i][0]-1)*20))
+        if i % 3 == 0:
+            screen.blit(img, (((mine_places[i][1] - 1) * 20),
+                              (mine_places[i][0] - 1) * 20))
 
-def draw_grid(state,mine_places):
+
+def draw_grid(state, mine_places):
     screen.fill(consts.BG_MATRIX)
     for x in range(0, consts.WINDOW_WIDTH, consts.BLOCK_SIDE):
         for y in range(0, consts.WINDOW_HEIGHT, consts.BLOCK_SIDE):
@@ -65,29 +68,32 @@ def draw_grid(state,mine_places):
 
 def draw_message(message, font_size, color, bg, location):
     font = pygame.font.SysFont(consts.FONT_NAME, font_size)
-    text_img = font.render(message, True, color,bg)
+    text_img = font.render(message, True, color, bg)
     screen.blit(text_img, location)
+
 
 def draw_win_message():
     draw_message(consts.WIN_MESSAGE, consts.FONT_SIZE,
                  consts.MESSAGE_COLOR, consts.MESSAGE_BG_WIN, consts.LOCATION)
 
+
 def draw_lose_message():
     draw_message(consts.LOSE_MESSAGE, consts.FONT_SIZE,
-                 consts.MESSAGE_COLOR,consts.MESSAGE_BG_LOSE, consts.LOCATION)
+                 consts.MESSAGE_COLOR, consts.MESSAGE_BG_LOSE, consts.LOCATION)
 
-def draw_game(state,mine_places):
-    if state["show"]==True:
-            draw_grid(state,mine_places)
+
+def draw_game(state, mine_places):
+    if state["show"] == True:
+        draw_grid(state, mine_places)
     else:
         screen.fill(consts.BG_COLOR)
         draw_grass()
         draw_flag()
         draw_soldier(state["soldier_place"])
 
-        if state["is_winning"]==consts.CONTINUE_STATE:
+        if state["is_winning"] == consts.CONTINUE_STATE:
             pass
-        elif state["is_winning"]==consts.WIN_STATE:
+        elif state["is_winning"] == consts.WIN_STATE:
             draw_win_message()
         elif state["is_winning"] == consts.LOSE_STATE:
             draw_lose_message()

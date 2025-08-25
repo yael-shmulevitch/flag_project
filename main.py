@@ -7,26 +7,37 @@ import Soldier
 from time import sleep
 import time
 
-state={"window_open":True,"is_winning":CONTINUE_STATE,"show":False,"soldier_place":(0,0),
-       }
+state = {"window_open": True, "is_winning": CONTINUE_STATE, "show": False,
+         "soldier_place": (0, 0),
+         }
+
+
 def main():
     pygame.init()
     mine_places = create()
+    print(mine_palces)
+    print(len(mine_places))
+    for i in range(len(mine_places)):
+        if i % 3 == 0:
+            print(mine_places[i])
     while state["window_open"]:
         Soldier.keyboard(state)
-        if state["show"]==True:
-            ending=time.time()+1
-            while time.time()<ending:
-                Screen.draw_game(state,mine_places)
-            state["show"]=False
+        if state["show"] == True:
+            ending = time.time() + 1
+            while time.time() < ending:
+                Screen.draw_game(state, mine_places)
+            state["show"] = False
         else:
-            state["is_winning"]=Soldier.check(state["soldier_place"],mine_places)
+            state["is_winning"] = Soldier.check(state["soldier_place"],
+                                                mine_places)
             Screen.draw_game(state, mine_places)
-        if state["is_winning"]==WIN_STATE or state["is_winning"]==LOSE_STATE:
-            ending=time.time()+3
-            while time.time()<ending:
-                Screen.draw_game(state,mine_places)
-                state["window_open"]=False
+        if state["is_winning"] == WIN_STATE or state[
+            "is_winning"] == LOSE_STATE:
+            ending = time.time() + 3
+            while time.time() < ending:
+                Screen.draw_game(state, mine_places)
+                state["window_open"] = False
+
 
 if __name__ == "__main__":
     main()
