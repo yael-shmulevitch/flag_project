@@ -42,6 +42,8 @@ def keyboard(state):
                 x=state["soldier_place"][0]-1
                 y=state["soldier_place"][1]
                 state["soldier_place"]= (x,y)
+
+
             if event.key == K_RETURN:
                 state["show"] = True
 
