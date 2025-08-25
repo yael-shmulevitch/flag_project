@@ -42,7 +42,9 @@ def draw_soldier(soldier_place):
     img = pygame.image.load(consts.SOLDIER)
     screen.blit(img,((soldier_place[1])*20,(soldier_place[0])*20))
 
-
+def draw_night_soldier(soldier_place):
+    img = pygame.image.load(consts.NIGHT_SOLDIER)
+    screen.blit(img,((soldier_place[1])*20,(soldier_place[0])*20))
 
 def draw_mine(mine_places):
     img = pygame.image.load(consts.MINE)
@@ -56,7 +58,7 @@ def draw_grid(state,mine_places):
         for y in range(0, consts.WINDOW_HEIGHT, consts.BLOCK_SIDE):
             rect = pygame.Rect(x, y, consts.BLOCK_SIDE, consts.BLOCK_SIDE)
             pygame.draw.rect(screen, consts.GRID_COLOR, rect, 1)
-    draw_soldier(state["soldier_place"])
+    draw_night_soldier(state["soldier_place"])
     draw_mine(mine_places)
     pygame.display.flip()
 
