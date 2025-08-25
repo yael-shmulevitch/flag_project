@@ -2,6 +2,7 @@ import random
 import pygame
 import consts
 import game_field
+import time
 
 
 screen = pygame.display.set_mode(
@@ -39,7 +40,7 @@ def draw_grass():
 
 def draw_soldier(soldier_place):
     img = pygame.image.load(consts.SOLDIER)
-    screen.blit(img,(soldier_place[0]*20,soldier_place[1]*20))
+    screen.blit(img,(soldier_place[1]*20,soldier_place[0]*20))
 
 
 
@@ -58,8 +59,6 @@ def draw_grid():
     draw_soldier(soldier_place=(0,0))
     draw_mine([(0,4),(100,200)])
     pygame.display.flip()
-    while 1:
-        pass
 
 
 def draw_message(message, font_size, color, bg, location):
@@ -77,12 +76,13 @@ def draw_lose_message():
 
 def draw_game(state,mine_places):
     if state["show"]==True:
+        print(state)
         draw_grid()
-    else:
+        time.sleep(1)
+    if state["show"]==False:
         screen.fill(consts.BG_COLOR)
         draw_flag()
         draw_grass()
         draw_soldier(state["soldier_place"])
-        draw_mine(mine_places)
         pygame.display.flip()
 

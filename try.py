@@ -1,17 +1,15 @@
-
 import pygame
-
-
-img = pygame.image.load('flag.png')
-
-white = (255, 64, 64)
-w = 640
-h = 480
-screen = pygame.display.set_mode((w, h))
-screen.fill((white))
-running = 1
-
+pygame.init()
+screen = pygame.display.set_mode((100, 100))
+screen.fill("gold")
+pygame.display.update()
+running = True
 while running:
-    screen.fill((white))
-    screen.blit(img,(0,0))
-    pygame.display.flip()
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            print("Keydown")
+            if event.key == pygame.K_SPACE:
+                print("Space key")
+            elif event.key == pygame.K_ESCAPE:
+                print("Escape key")
+                running = False
