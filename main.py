@@ -15,11 +15,6 @@ state = {"window_open": True, "is_winning": CONTINUE_STATE, "show": False,
 def main():
     pygame.init()
     mine_places = create()
-    print(mine_palces)
-    print(len(mine_places))
-    for i in range(len(mine_places)):
-        if i % 3 == 0:
-            print(mine_places[i])
     while state["window_open"]:
         Soldier.keyboard(state)
         if state["show"] == True:
