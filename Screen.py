@@ -47,7 +47,7 @@ def draw_grid():
 
 def draw_soldier(soldier_place):
     img = pygame.image.load(consts.SOLDIER)
-    screen.blit(img,(soldier_place[0],soldier_place[1]))
+    screen.blit(img,(soldier_place[0]*20,soldier_place[1]*20))
 
 
 
@@ -85,5 +85,3 @@ def draw_lose_message():
     draw_message(consts.LOSE_MESSAGE, consts.FONT_SIZE,
                  consts.MESSAGE_COLOR,consts.MESSAGE_BG_LOSE, consts.LOCATION)
 
-while True:
-    draw_lose_message()

@@ -8,6 +8,7 @@ def main():
     pygame.init()
 
     while state["window_open"]:
+
         Screen.draw_game(state)
 
 if __name__ == "__main__":
