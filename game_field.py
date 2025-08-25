@@ -31,9 +31,9 @@ def create ():
         else:
             continue
 
-    return mine_palces,board_matrix
+    return mine_palces
 
-print(create()[1])
+
 
 
 

@@ -3,6 +3,7 @@ import consts
 import Screen
 from Screen import draw_win_message, draw_lose_message
 from game_field import *
+import Soldier
 
 state={"window_open":True,"is_winning":0,"show":False,"move":None,"soldier_place":(0,0),
        }
@@ -11,7 +12,7 @@ def main():
     mine_places = create()
     my_grass= Screen.grass()
     while state["window_open"]:
-        state["soldier_place"]=Soldier.keybord(state["soldier_place"])
+        state["soldier_place"]=Soldier.keyboard(state)
         Soldier.check(state["soldier_place"],mine_places)
         if state["is_winning"]==1:
             pass
